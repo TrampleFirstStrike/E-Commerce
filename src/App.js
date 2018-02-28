@@ -6,6 +6,7 @@ import Home from './components/Home/Home';
 import Store from './components/Store/Store';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 import { Route, Switch } from 'react-router-dom';
+import Auth from './components/Auth/Auth';
 
 class App extends Component {
   constructor() {
@@ -40,8 +41,10 @@ class App extends Component {
       <div className="App">
         <Header />
         <Switch>
+          
           <Route exact path="/" component={Home} />
-          <route path="/store" render={() => {
+          <Route path="/Auth" component={Auth} />
+          <Route path="/store" render={() => {
             return <Store
             addToShoppingCart={this.addToShoppingCart} />
           }} />
