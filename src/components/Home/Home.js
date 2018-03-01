@@ -4,11 +4,11 @@ import './Home.css';
 class Home extends Component {
     render () {
         return (
-            <div class="section-1">
-            <div class="content">
-                <h2 class="hero-text">Home</h2>
-                <p class="hero-sub-text"></p>
-                <a href="" class="btn"></a>
+            <div className="section-1">
+            <div className="content">
+                <h2 className="hero-text">Home</h2>
+                <p className="hero-sub-text"></p>
+                <a href="" className="btn"></a>
             </div>
             </div>
 

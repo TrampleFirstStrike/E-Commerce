@@ -1,0 +1,14 @@
+<Route exact path="/" component={Home} />
+          <Route path="/Auth" component={Auth} />
+          <Route path="/store" render={() => {
+            return <Store
+            addToShoppingCart={this.addToShoppingCart} />
+          }} />
+          <Route path="/shoppingcart" render={() => {
+            return <ShoppingCart
+            shoppingCart={this.state.shoppingCart}
+            removeFromShoppingCart={this.removeFromShoppingCart} />
+          }} />
+
+          //store.js
+          <img src={this.state.products.img_url} />

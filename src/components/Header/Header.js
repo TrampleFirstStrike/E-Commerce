@@ -17,6 +17,7 @@ class Header extends Component {
                             <li><Link to="/">Home</Link></li>
                             <li><Link to="/store">Store</Link></li>
                             <li><Link to="/shoppingcart">Shopping Cart</Link></li>
+                            <li><Link to="/Auth">Login</Link></li>
                         </ul>
                     </div>
                 </div>

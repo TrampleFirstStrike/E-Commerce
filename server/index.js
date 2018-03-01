@@ -40,6 +40,11 @@ massive(process.env.CONNECTION_STRING).then(db=>{
   done(null, obj );
  });
 
+ app.post('/api/addToCart', (req, res) => {
+   console.log(req.user)
+
+ })
+
  app.get(
    "/Auth",
    passport.authenticate("auth0", {
@@ -81,6 +86,14 @@ app.get(`/api/dbtest`, (req, res) => {
       });
    });
 
+   app.get('/api/products', (req, res) => {
+     console.log("hit");
+     req.app
+     .get('db')
+     .getProducts()
+     .then(response => {res.status(200).json(response)
+    });
+   });
 
 const port = process.env.PORT || 3001;
 app.listen( port, () => { console.log(`Server listening on port ${port}`); } );

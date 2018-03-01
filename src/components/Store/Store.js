@@ -3,17 +3,26 @@ import axios from 'axios';
 import './Store.css';
 
 class Store extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
 
         this.state = {
             products: []
         }
     }
 
+    handleClick (product) {
+        axios.post('/api/')
+
+    }
+
+
+
     componentDidMount() {
-        axios.get("https://www.giantbomb.com/api/games/")
+        axios.get("/api/products")
         .then((response) => {
+            console.log(response, 'this is the response log');
             this.setState({
                 products: response.data
             })
@@ -22,23 +31,21 @@ class Store extends Component {
 
     render() {
         let productToDisplay = this.state.products.map((element, index) => {
-            return (
-                <div className="product-container" key={index}>
-                    <h2>{element.title}</h2>
-                    <img src={element.image} alt="" />
-                    <h2>{element.desc}</h2>
-                    <h3>{"$" + element.price + ".00"}</h3>
-                    <button onClick={() =>this.props.addToShoppingCart(element)}>Buy</button>
-                </div>
-            )
+            return (<div><img src={element.image_url}/>
+                <button onClick={() => this.handleClick(this.state.products[index])}className="cart-button">Add to Shopping Cart</button>
+            </div>)
         })
-        return (
-            <div className="store-container">
-                {productToDisplay}
-            </div>
-
-        )
+            return (
+                     
+                     <div className="section-1">
+                         {productToDisplay}
+                     <div className="content">
+                         <h2 className="hero-text">Store</h2>
+                         <p className="hero-sub-text"></p>
+                         <a href="" className="btn"></a>
+                     </div>
+                     </div>
+            )
+        }
     }
-}
-
 export default Store;
