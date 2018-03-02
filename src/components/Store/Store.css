@@ -16,6 +16,15 @@
     padding-bottom: 200px;
 }
 .cart-button {
- 
     
+ 
+}
+
+#overlay {
+    position: absolute;
+    left: 46%;
+    top: 60%;
+}
+.holder {
+    position: relative;
 }

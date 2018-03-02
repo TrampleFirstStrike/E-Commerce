@@ -32,7 +32,7 @@ class Store extends Component {
     render() {
         let productToDisplay = this.state.products.map((element, index) => {
             return (<div><img src={element.image_url}/>
-                <button onClick={() => this.handleClick(this.state.products[index])}className="cart-button">Add to Shopping Cart</button>
+                <button id="overlay" onClick={() => this.handleClick(this.state.products[index])}className="cart-button">Add to Shopping Cart</button>
             </div>)
         })
             return (
