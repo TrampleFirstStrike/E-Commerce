@@ -23,10 +23,10 @@ class App extends Component {
   }
 
   addToShoppingCart(product) {
+    // console.log(product)
     this.setState({
       shoppingCart: [...this.state.shoppingCart, product]
     })
-    console.log(this.state.shoppingCart);
   }
 
   removeFromShoppingCart(product) {
@@ -35,16 +35,18 @@ class App extends Component {
     this.setState({
       shoppingCart: newShoppingCart
     })
-    console.log(this.state.shoppingCart);
   }
 
   render() {
     return (
       <div className="App">
-        <Header />
-        <Switch>
-        {routes}
-        </Switch>
+        <Header /> 
+    <Switch>
+        <Route path="/Store" render={()=> (<Store handleClick={this.addToShoppingCart}/>) } />
+        <Route path="/ShoppingCart" render={()=> (<ShoppingCart products={this.state.shoppingCart}/>)} />
+        <Route path="/Auth" component={ Auth } />
+        <Route exact path="/" component={ Home } />
+    </Switch> 
       </div>
     );
   }

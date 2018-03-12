@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import './Header.css';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class Header extends Component {
 
     render() {
         return (
-            <div>
+           
                 <div className="header-container">
-                    <div className="logo-container">
-                        {/* <Link to="/"><img className="logo-image" src={Logo} alt="" /></Link> */}
-                    </div>
+                   
+                    <img className="logo"  src={require("../../images/logo.png")} alt="" />
+                    
 
                     <div className="header-links-container">
-                        <ul className="header-links">
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/store">Store</Link></li>
-                            <li><Link to="/shoppingcart">Shopping Cart</Link></li>
-                            <li><Link to="/Auth">Login</Link></li>
+                        <ul className="header-list">
+                            <li className="header-link-item"><NavLink exact to="/" className="header-link">Home</NavLink></li>
+                            <li className="header-link-item"><NavLink to="/store" className="header-link">Store</NavLink></li>
+                            <li className="header-link-item"><NavLink to="/shoppingcart" className="header-link">Shopping Cart</NavLink></li>
+                            <li className="header-link-item"><NavLink to="/Auth" className="header-link">Login</NavLink></li>
                         </ul>
                     </div>
                 </div>
-            </div>
+            
         )
     }
 }

@@ -9,9 +9,9 @@ import Auth from '../components/Auth/Auth'
 
 export default (
     <Switch>
-        <Route exact path="/" component={ Home } />
         <Route path="/Store" component={ Store } />
         <Route path="/ShoppingCart" component={ ShoppingCart } />
         <Route path="/Auth" component={ Auth } />
+        <Route exact path="/" component={ Home } />
     </Switch>
 )

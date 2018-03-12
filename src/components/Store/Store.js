@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './Store.css';
+import axios from 'axios';
 
 class Store extends Component {
     constructor(props) {
@@ -12,9 +12,8 @@ class Store extends Component {
         }
     }
 
-    handleClick (product) {
-        axios.post('/api/')
-
+    handleClick (id) {
+    axios.post('/api/addToCart', {id}) 
     }
 
 
@@ -31,20 +30,16 @@ class Store extends Component {
 
     render() {
         let productToDisplay = this.state.products.map((element, index) => {
-            return (<div><img src={element.image_url}/>
-                <button id="overlay" onClick={() => this.handleClick(this.state.products[index])}className="cart-button">Add to Shopping Cart</button>
+            return (<div className="image-wrapper" key={index}><figure><img className="image-product" src={element.image_url}/></figure>
+                <button onClick={() => this.handleClick(this.state.products[index].id)} className="cart-button">Add to Cart</button>
             </div>)
-        })
+        })  
             return (
-                     
-                     <div className="section-1">
-                         {productToDisplay}
-                     <div className="content">
-                         <h2 className="hero-text">Store</h2>
-                         <p className="hero-sub-text"></p>
-                         <a href="" className="btn"></a>
-                     </div>
-                     </div>
+                     <div className="wrapper">
+                        <div className="section-2">
+                            {productToDisplay}
+                        </div>
+                    </div>
             )
         }
     }

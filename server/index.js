@@ -25,26 +25,34 @@ massive(process.env.CONNECTION_STRING).then(db=>{
    saveUninitialized: true
  }));
  
- app.use( checkForSession );
  app.use( passport.initialize() );
  app.use( passport.session() );
  
  passport.use( strategy );
-
+ 
  passport.serializeUser( (user, done) => {
-  const { _json } = user;
-  done(null, { clientID: _json.clientID, email: _json.email, name: _json.name, followers: _json.followers_url });
-});
+   const { _json } = user;
+   done(null, { clientID: _json.clientID, email: _json.email, name: _json.name, followers: _json.followers_url });
+  });
+  
+  passport.deserializeUser((obj, done) => {
+    done(null, obj );
+  });
+  
+  app.use( checkForSession );
 
- passport.deserializeUser((obj, done) => {
-  done(null, obj );
- });
-
- app.post('/api/addToCart', (req, res) => {
-   console.log(req.user)
-
- })
-
+  app.post('/api/addToCart', (req, res) => {
+    app.get("db").getProductByID(req.body.id).then(response => {
+      req.session.user.cart.push(response)
+      res.status(200).send(req.session.user.cart);
+    })
+    .catch(console.log)
+    
+  })
+app.get("/api/getCart", (req, res, next) => {
+  console.log(req.session.user)
+  res.status(200).json(req.session.user.cart)
+})
  app.get(
    "/Auth",
    passport.authenticate("auth0", {

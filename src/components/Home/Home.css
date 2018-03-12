@@ -1,10 +1,12 @@
 .section-1 {
-    background-image: url("../../images/photo3.jpg");
+    background-image: url("../../images/gaming3.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
     color: white;
+    height: 100vh;
+
 
    
 }

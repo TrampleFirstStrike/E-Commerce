@@ -1,0 +1,11 @@
+.login-button {
+    z-index: 50;
+    position: absolute;
+    top: 300px;
+    margin-top: 15vh;
+}
+.auth-container {
+    height: auto;
+    width: auto;
+    margin-top: 15vh;
+}
