@@ -4,16 +4,7 @@
     background-color: black;
 }
 
-.holder {
-    
-    position: relative;
-}
-.header-links-container {
-    
-}
-
 .section-2 {
-    
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -31,17 +22,6 @@ figure {
     margin-bottom: 8px;
 }
 
-@media (min-width:768px){
-    .image-wrapper {
-      width:calc(50% - 6px)
-    }
-  }
-
-  @media (min-width:968px){
-    .image-wrapper {
-      width:calc(25% - 6px)
-    }
-  }
 
 .image-product {
     max-width: 100%;

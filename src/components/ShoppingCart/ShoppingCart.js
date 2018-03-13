@@ -9,6 +9,7 @@ class ShoppingCart extends Component {
         this.state = {
             shoppingCart: []
         }
+        this.removeFromShoppingCart = this.removeFromShoppingCart.bind(this);
     }
     componentDidMount(){
         axios.get("/api/getCart").then(response => this.setState({shoppingCart: response.data})).catch(console.log)
@@ -19,10 +20,25 @@ class ShoppingCart extends Component {
         })
     }
 
+    removeFromShoppingCart(id) {
+        let newCart = this.state.shoppingCart.filter((el, index) => {
+            return index !== id 
+    })
+    
+    this.setState({
+        shoppingCart: newCart
+    })
+}
+
+
+
     render () {
         let productToDisplay = this.state.shoppingCart.length >  0 ? this.state.shoppingCart.map((product, index) => {
-            return (<li className="product-container" key={index}><img src={product[0].image_url} alt=""/></li>)
-            }): "No Items to Display"
+            return (<div className="product-container" key={index}><figure><img className="cart-product"src={product[0].image_url} alt=""/></figure>
+            <button className="shopping-cart-button" onClick={() => this.removeFromShoppingCart(index)}>Remove From Shopping Cart</button>
+            </div>)
+        }): "No Items to Display"
+         
          return (
             <div className="section-1"> 
                 <div className="shopping-cart-container">
@@ -37,4 +53,3 @@ class ShoppingCart extends Component {
 }
 
 export default ShoppingCart;
-<img src="{product.image_url}" alt=""/>
