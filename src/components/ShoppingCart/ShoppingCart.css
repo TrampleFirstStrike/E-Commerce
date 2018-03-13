@@ -1,3 +1,5 @@
+
+
 .section-1 {
 
     
@@ -16,10 +18,10 @@
 }
 
 .shopping-cart-container {
-    position: relative;
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 40px 5%;  
 }
 
 .shopping-cart-info {
@@ -35,7 +37,9 @@
 }
 .product-container {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 40px 5%;  
 }
 
 

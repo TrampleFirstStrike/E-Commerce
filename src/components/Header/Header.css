@@ -1,7 +1,18 @@
+
 .header-container {
-    height: 11.35vh;
     width: 100%;
+    background-color: #2b2b2b;
     
+  }
+
+  .header-container::before, .header-container::after {
+      content: "\0020";
+      height: 0;
+      display: block;
+      overflow: hidden;
+  }
+  .header-container::after {
+      clear: both;
   }
 
 .header-links-container {
@@ -56,8 +67,6 @@
 .logo {
     height: 100px;
     width: 100px;
- 
     position: relative;
-    float: left;
     padding-left: 20px;
 }
