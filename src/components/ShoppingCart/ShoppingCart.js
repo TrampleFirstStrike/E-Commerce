@@ -21,9 +21,8 @@ class ShoppingCart extends Component {
 
     render () {
         let productToDisplay = this.state.shoppingCart.length >  0 ? this.state.shoppingCart.map((product, index) => {
-            
             return (<li className="product-container" key={index}><img src={product[0].image_url} alt=""/></li>)
-        }): "No Items to Display"
+            }): "No Items to Display"
          return (
             <div className="section-1"> 
                 <div className="shopping-cart-container">
