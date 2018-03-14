@@ -31,6 +31,7 @@ class Store extends Component {
         <div className="image-wrapper" key={index}>
           <figure>
             <img className="image-product" src={element.image_url} />
+            <h1 className="product-price">${element.price}.00</h1>
           </figure>
           <button
             onClick={() => this.handleClick(this.state.products[index].id)}

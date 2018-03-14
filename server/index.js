@@ -5,8 +5,11 @@ const cors = require('cors');
 const massive = require('massive');
 const session = require('express-session');
 const passport = require('passport');
-const strategy = require(`${__dirname}/strategy.js`);
+// const strategy = require(`${__dirname}/strategy.js`);
 const request = require('request');
+const Auth0Strategy = require('passport-auth0');
+const config = require(`${__dirname}/config.js`);
+const { domain, clientID, clientSecret } = config;
 
 const checkForSession = require('./middlewares/checkForSession');
 
@@ -28,11 +31,36 @@ massive(process.env.CONNECTION_STRING).then(db=>{
  app.use( passport.initialize() );
  app.use( passport.session() );
  
- passport.use( strategy );
+ passport.use( new Auth0Strategy({
+  domain,
+  clientID,
+  clientSecret,
+  scope: 'openid profile email',
+  callbackURL: '/Auth'
+},
+function(accessToken, refreshToken, extraParams, profile, done) {
+  app
+    .get("db")
+    .getUserByAuthId(profile.user_id)
+    .then(response => {
+      console.log(profile, "profile")
+      console.log(response, "response")
+      if (!response[0]) {
+        app
+          .get("db")
+          .createUserByAuthId(profile.user_id, profile._json.name)
+          .then(created => done(null, created[0]));
+      } else {
+        return done(null, response[0]);
+      }
+    })
+  
+}
+))
  
  passport.serializeUser( (user, done) => {
-   const { _json } = user;
-   done(null, { clientID: _json.clientID, email: _json.email, name: _json.name, followers: _json.followers_url });
+   
+    done(null, user);
   });
   
   passport.deserializeUser((obj, done) => {
@@ -68,23 +96,6 @@ app.get('/login',
   )
 );
 
-app.get('/followers', ( req, res, next ) => {
-  if ( req.user ) {
-    const FollowersRequest = {
-      url: req.user.followers,
-      headers: {
-        'User-Agent': req.user.clientID
-      }
-    };
-
-    request(FollowersRequest, ( error, response, body ) => {
-      res.status(200).send(body);
-    });
-  } else {
-    res.redirect('/login');
-  }
-});
-
 app.get(`/api/dbtest`, (req, res) => {
     req.app
       .get('db')
@@ -102,6 +113,15 @@ app.get(`/api/dbtest`, (req, res) => {
      .then(response => {res.status(200).json(response)
     });
    });
+
+   app.get("/api/me", (req, res) => {
+    console.log(req);
+    if (req.user) {
+      res.status(200).json(req.user);
+    } else {
+      res.status(500).json({ message: "User is not logged in" });
+    }
+  });
 
 const port = process.env.PORT || 3001;
 app.listen( port, () => { console.log(`Server listening on port ${port}`); } );
