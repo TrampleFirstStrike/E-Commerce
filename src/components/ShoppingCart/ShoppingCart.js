@@ -7,15 +7,40 @@ class ShoppingCart extends Component {
     super(props);
 
     this.state = {
-      shoppingCart: []
+      shoppingCart: [],
+      total: 0,
+      grandTotal: 0
     };
+    this.getCartTotal = this.getCartTotal.bind(this);
+    this.getSalesTax = this.getSalesTax.bind(this);
     this.removeFromShoppingCart = this.removeFromShoppingCart.bind(this);
   }
   componentDidMount() {
     axios
-      .get("/api/getCart")
-      .then(response => this.setState({ shoppingCart: response.data }))
-      .catch(console.log);
+    .get("/api/getCart")
+    .then(response => { 
+      this.setState({ shoppingCart: response.data })
+      console.log(response.data)
+      this.getCartTotal(response.data);
+      this.getSalesTax(this.state.total);
+
+    })
+    .catch(console.log);
+    
+    
+  }
+   getCartTotal (shoppingCart) { console.log(shoppingCart)
+    let total = 0;
+    for(let i=0; i<shoppingCart.length; i++) {
+      console.log(shoppingCart[i].price)
+      total += parseInt(shoppingCart[i].price)
+    } 
+    this.setState({total});
+  }
+    getSalesTax (total) {
+    let salesTax= total * 1.0625
+    let grandTotal = salesTax + total;
+    this.setState({grandTotal});
   }
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -33,18 +58,20 @@ class ShoppingCart extends Component {
     });
   }
 
+    
   render() {
+    console.log (this.state.total, this.state.grandTotal)
     let productToDisplay =
       this.state.shoppingCart.length > 0
         ? this.state.shoppingCart.map((product, index) => {
             return (
               <div className="product-container" key={index}>
                 <figure>
-                  <img
+                   <img
                     className="cart-product"
-                    src={product[0].image_url}
+                    src={product.image_url} 
                     alt=""
-                  />
+                  /> 
                 </figure>
                 <button
                   className="shopping-cart-button"
@@ -52,6 +79,7 @@ class ShoppingCart extends Component {
                 >
                   Remove From Shopping Cart
                 </button>
+                <h1>{product.price}</h1>
               </div>
             );
           })
@@ -66,6 +94,7 @@ class ShoppingCart extends Component {
               : "No Items in Cart"}
           </ul>
         </div>
+        {this.state.grandTotal}
         <button onClick={() => console.log(this.state.shoppingCart)}>
           Test for state
         </button>

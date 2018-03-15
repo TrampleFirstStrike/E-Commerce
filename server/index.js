@@ -71,7 +71,8 @@ function(accessToken, refreshToken, extraParams, profile, done) {
 
   app.post('/api/addToCart', (req, res) => {
     app.get("db").getProductByID(req.body.id).then(response => {
-      req.session.user.cart.push(response)
+      console.log(response[0])
+      req.session.user.cart.push(response[0])
       res.status(200).send(req.session.user.cart);
     })
     .catch(console.log)
