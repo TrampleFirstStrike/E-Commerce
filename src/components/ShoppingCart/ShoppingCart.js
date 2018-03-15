@@ -79,7 +79,7 @@ class ShoppingCart extends Component {
                 >
                   Remove From Shopping Cart
                 </button>
-                <h1>{product.price}</h1>
+                <h1>${product.price}.00</h1>
               </div>
             );
           })
@@ -94,10 +94,7 @@ class ShoppingCart extends Component {
               : "No Items in Cart"}
           </ul>
         </div>
-        {this.state.grandTotal}
-        <button onClick={() => console.log(this.state.shoppingCart)}>
-          Test for state
-        </button>
+        ${this.state.grandTotal}
       </div>
     );
   }

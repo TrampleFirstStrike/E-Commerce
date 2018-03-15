@@ -53,8 +53,7 @@ function(accessToken, refreshToken, extraParams, profile, done) {
       } else {
         return done(null, response[0]);
       }
-    })
-  
+  })
 }
 ))
  
