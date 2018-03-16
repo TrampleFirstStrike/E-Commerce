@@ -16,7 +16,6 @@ class Store extends Component {
     axios.post("/api/addToCart", { id });
   }
   addToMyWishlist(id) {
-    console.log("id", id);
     axios.post("/api/addToWishlist", { id }).then(response => console.log(response));
   }
 

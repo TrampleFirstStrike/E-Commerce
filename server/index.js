@@ -79,6 +79,17 @@ function(accessToken, refreshToken, extraParams, profile, done) {
     })
     .catch(console.log)
   })
+
+  app
+    .delete('/api/removeFromWishlist/:id', (req, res) => {
+      console.log(req.params.id)
+      app.get('db').removeFromWishlist([req.params.id, req.user.id]).then(response => {
+        req.app.get('db').getUserWishlist([req.user.id])
+        .then(response => {
+          res.status(200).json(response)
+        })
+      })
+    })
   
   app.get('/api/getUserWishlist', (req, res) => {
     console.log('HIT wishlist')
