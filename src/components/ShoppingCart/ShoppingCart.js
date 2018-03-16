@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./ShoppingCart.css";
 import axios from "axios";
+import Checkout from '../Checkout/Checkout';
+import stripe from "../../constants/stripe";
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -95,6 +97,16 @@ class ShoppingCart extends Component {
           </ul>
         </div>
         ${this.state.grandTotal}
+        <Checkout
+            name={'The Road to learn React'}
+            description={'Only the Book'}
+            amount={this.state.grandTotal}
+           />
+           <stripe
+              name={"Games"}
+              description={"Your Order"}
+              amount={10}
+              />
       </div>
     );
   }

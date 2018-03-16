@@ -5,23 +5,14 @@
     
   }
 
-  .header-container::before, .header-container::after {
-      content: "\0020";
-      height: 0;
-      display: block;
-      overflow: hidden;
-  }
-  .header-container::after {
-      clear: both;
-  }
 
 .header-links-container {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 60%;
+    height: 40%;
     top: 0;
-    padding-top: 5vh;
+    padding-bottom: 2vh;
     margin: auto;
     display: block;
     background-color: #2b2b2b;
@@ -60,6 +51,7 @@
 
 .header-link.active {
     color: #d734e6;
+    text-decoration-line: underline;
 
 }
 

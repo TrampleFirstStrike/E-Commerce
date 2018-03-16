@@ -10,6 +10,10 @@ const request = require('request');
 const Auth0Strategy = require('passport-auth0');
 const config = require(`${__dirname}/config.js`);
 const { domain, clientID, clientSecret } = config;
+const configureStripe = require("stripe");
+
+
+const stripe = configureStripe(process.env.sk_test_MT_SECRET_KEY);
 
 const checkForSession = require('./middlewares/checkForSession');
 
@@ -77,9 +81,9 @@ function(accessToken, refreshToken, extraParams, profile, done) {
     .catch(console.log)
     
   })
-app.get("/api/getCart", (req, res, next) => {
-  console.log(req.session.user)
-  res.status(200).json(req.session.user.cart)
+  app.get("/api/getCart", (req, res, next) => {
+    console.log(req.session.user)
+    res.status(200).json(req.session.user.cart)
 })
  app.get(
    "/Auth",
@@ -122,6 +126,19 @@ app.get(`/api/dbtest`, (req, res) => {
       res.status(500).json({ message: "User is not logged in" });
     }
   });
+
+  app.post("/api/payment", (req, res) => {
+    stripe.charges.create(req.body, postStripeCharge(req, res))
+});
+
+  const postStripeCharge = (req, res) => (stripeErr, stripeRes) => {
+    if (stripeErr) {
+      console.log(stripeErr)
+        res.status(500).send({ error: stripeErr })
+    } else {
+        res.status(200).send({ success: stripeRes })
+    }
+}
 
 const port = process.env.PORT || 3001;
 app.listen( port, () => { console.log(`Server listening on port ${port}`); } );

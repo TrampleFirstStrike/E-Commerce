@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Home.css';
+import sawl from 'sweetalert';
 
 class Home extends Component {
     render () {

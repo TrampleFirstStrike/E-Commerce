@@ -17,3 +17,9 @@ CREATE TABLE users (
     email text,
     user_address text
 )
+
+CREATE TABLE wishlist (
+    id SERIAL PRIMARY KEY,
+    game_id text,
+    
+)
