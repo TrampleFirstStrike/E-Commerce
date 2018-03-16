@@ -8,6 +8,7 @@ import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 import { Route, Switch } from 'react-router-dom';
 import Auth from './components/Auth/Auth';
 import routes from './routes/routes';
+import Wishlist from './components/Wishlist/Wishlist'
 
 
 class App extends Component {
@@ -46,6 +47,7 @@ class App extends Component {
         <Route path="/ShoppingCart" render={()=> (<ShoppingCart products={this.state.shoppingCart}/>)} />
         <Route path="/Auth" component={ Auth } />
         <Route exact path="/" component={ Home } />
+        <Route path="/Wishlist" component={ Wishlist } />
     </Switch> 
       </div>
     );

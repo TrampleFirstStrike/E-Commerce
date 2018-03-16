@@ -72,7 +72,29 @@ function(accessToken, refreshToken, extraParams, profile, done) {
   
   app.use( checkForSession );
 
+  app
+    .post('/api/addToWishlist', (req, res) => {
+    app.get('db').addToWishlist([req.body.id, req.user.id]).then(response => {
+      res.status(200).json(response)
+    })
+    .catch(console.log)
+  })
+  
+  app.get('/api/getUserWishlist', (req, res) => {
+    console.log('HIT wishlist')
+    req.app.get('db').getUserWishlist([req.user.id])
+    .then(response => {
+      res.status(200).json(response)
+    })
+  })
+  
+
+  
+  
+  
+  
   app.post('/api/addToCart', (req, res) => {
+    console.log(req.user)
     app.get("db").getProductByID(req.body.id).then(response => {
       console.log(response[0])
       req.session.user.cart.push(response[0])

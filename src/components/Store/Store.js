@@ -15,6 +15,10 @@ class Store extends Component {
   handleClick(id) {
     axios.post("/api/addToCart", { id });
   }
+  addToMyWishlist(id) {
+    console.log("id", id);
+    axios.post("/api/addToWishlist", { id }).then(response => console.log(response));
+  }
 
   componentDidMount() {
     axios.get("/api/products").then(response => {
@@ -37,6 +41,11 @@ class Store extends Component {
             onClick={() => this.handleClick(this.state.products[index].id)}
             className="cart-button">
             Add to Cart
+          </button>
+          <button
+            onClick={() => this.addToMyWishlist(this.state.products[index].id)}
+            className="wishlist-button">
+            Add to Wishlist
           </button>
         </div>
       );
