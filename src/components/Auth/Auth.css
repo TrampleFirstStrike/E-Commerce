@@ -1,9 +1,10 @@
 .login-button {
     z-index: 50;
-    position: absolute;
+    position: center;
     top: 300px;
     margin-top: 15vh;
     padding-top: 2px;
+    
 }
 .auth-container {
     height: auto;

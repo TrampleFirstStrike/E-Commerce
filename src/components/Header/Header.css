@@ -32,6 +32,10 @@ nav {
     text-decoration: none;
     transition: color .4s ease;
 }
+.nav-link-desktop:hover {
+    color: #025a0e;
+}
+
 
 .nav-mobile {
 }

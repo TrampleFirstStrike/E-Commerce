@@ -68,7 +68,7 @@ class Wishlist extends Component {
         return (
             <div className="wrapper">
                 <div className="section-2">
-                <button id="submit-button" onClick= {()=>this.editWishlistName()}>Submit</button><input id="submit-button" type="text" onChange={e=>this.wishlistInput(e.target.value)}/>Your Awesome Wishlist
+                <button id="submit-button" onClick= {()=>this.editWishlistName()}>Submit Wishlist Title Change</button><input id="submit-button" type="text" onChange={e=>this.wishlistInput(e.target.value)}/>
                 {wishlistToDisplay}
                 </div>
             </div>
