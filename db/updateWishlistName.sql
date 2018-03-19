@@ -1,0 +1,1 @@
+UPDATE wishlist SET wishlist_name = $1;

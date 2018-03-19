@@ -3,6 +3,7 @@ import "./ShoppingCart.css";
 import axios from "axios";
 import Checkout from '../Checkout/Checkout';
 import stripe from "../../constants/stripe";
+import { NavLink } from 'react-router-dom';
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -79,24 +80,22 @@ class ShoppingCart extends Component {
                   className="shopping-cart-button"
                   onClick={() => this.removeFromShoppingCart(index)}
                 >
-                  Remove From Shopping Cart
+                <i className="fa fa-times"></i>
                 </button>
                 <h1>${product.price}.00</h1>
               </div>
             );
           })
-        : "No Items to Display";
+        : <p className="no-items">No items to display</p>;
 
     return (
-      <div className="section-1">
+      <div className="wrapper">
         <div className="shopping-cart-container">
-          <ul>
             {productToDisplay.length > 0
               ? productToDisplay
-              : "No Items in Cart"}
-          </ul>
+              : <p className="no-items">Awww snap! You don't have any cool games! Head over to the <NavLink to="/store">Store</NavLink> to pick out something to add to your cart!</p>}
         </div>
-        ${this.state.grandTotal}
+        <p>Total: ${this.state.grandTotal}</p>
         <Checkout
             name={'The Road to learn React'}
             description={'Only the Book'}

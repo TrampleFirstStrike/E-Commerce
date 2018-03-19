@@ -3,9 +3,11 @@
     position: absolute;
     top: 300px;
     margin-top: 15vh;
+    padding-top: 2px;
 }
 .auth-container {
     height: auto;
     width: auto;
     margin-top: 15vh;
+    background-color: black;
 }

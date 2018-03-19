@@ -98,6 +98,14 @@ function(accessToken, refreshToken, extraParams, profile, done) {
       res.status(200).json(response)
     })
   })
+
+  app.put('/api/wishlist', (req, res, next) => {
+    console.log(req.body)
+    req.app.get('db').updateWishlistName ([req.body.name]).then(response => {
+      console.log(response)
+      res.status(200).json(response.data)
+    }).catch((err)=>console.log(err))
+  })
   
 
   

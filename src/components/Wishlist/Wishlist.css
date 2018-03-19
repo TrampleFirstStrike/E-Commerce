@@ -1,0 +1,8 @@
+.wrapper {
+    background-color: black;
+    min-height: 100vh;
+}
+#submit-button {
+    height: 10px;
+
+}

@@ -1,13 +1,10 @@
+p {
+    color:#fff;
+}
 
-
-.section-a {
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-    color: white;
-    height: 100vh;
-    width: 100%;
+.wrapper {
+    background-color: black;
+    min-height: 100vh;
 }
 figure {
     margin: 0;
@@ -17,13 +14,8 @@ figure {
 .shopping-cart-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 0 5%;  
-}
-.shopping-cart-product-container {
-    display: flex;
-    margin: 5vh 0;
-    font-family: sans-serif;
+    justify-content: center;
+    padding: 5%;  
 }
 
 @media (min-width:768px){
@@ -48,12 +40,19 @@ figure {
 
 
 .shopping-cart-button {
-    height: 50px;
+    position: absolute;
+    top: -10px;
+    right: -11px;
+    padding: 4px 8px;
+    border-radius: 50%;
+    color: #b10000;
+    font-size: 16px;
 }
 .product-container {
+    position: relative;
     width: calc(100% - 8px);
     max-width: 300px;
-    margin-bottom: 8px;
+    margin-right: 25px;
 }
 
 .cart-product {
@@ -63,4 +62,9 @@ figure {
     transition: transform .2s ease-in-out;
 }
 
+.no-items {
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+}
 

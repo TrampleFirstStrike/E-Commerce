@@ -7,7 +7,7 @@ class Home extends Component {
         return (
             <div className="section-1">
             <div className="content">
-                <h2 className="hero-text">Home</h2>
+                <h2 className="hero-text"></h2>
                 <p className="hero-sub-text"></p>
                 <a href="" className="btn"></a>
             </div>

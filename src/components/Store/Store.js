@@ -31,7 +31,7 @@ class Store extends Component {
   render() {
     let productToDisplay = this.state.products.map((element, index) => {
       return (
-        <div className="image-wrapper" key={index}>
+        <div className="product-wrapper" key={index}>
           <figure>
             <img className="image-product" src={element.image_url} />
             <h1 className="product-price">${element.price}.00</h1>
@@ -43,8 +43,7 @@ class Store extends Component {
           </button>
           <button
             onClick={() => this.addToMyWishlist(this.state.products[index].id)}
-            className="wishlist-button">
-            Add to Wishlist
+            className="wishlist-button"><i className="fa fa-heart"></i>
           </button>
         </div>
       );
